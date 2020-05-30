@@ -2,8 +2,10 @@ package app.wakayama.tama.kakigoori
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.android.material.snackbar.Snackbar
 import io.realm.Realm
 import io.realm.RealmResults
 import kotlinx.android.synthetic.main.activity_main.*
@@ -25,6 +27,13 @@ class MainActivity : AppCompatActivity() {
 
         if (taskList.isEmpty()) {
             createDummyData()
+        }
+
+        //FloatingActionButtonの動作実装
+        val fab: View = findViewById(R.id.fab)
+        fab.setOnClickListener { view ->
+            Snackbar.make(view, "Fabを押しました！", Snackbar.LENGTH_LONG)
+                .setAction("Action", null).show()
         }
 
         val adapter =
