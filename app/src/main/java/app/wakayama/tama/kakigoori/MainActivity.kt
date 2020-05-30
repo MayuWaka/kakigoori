@@ -50,7 +50,7 @@ class MainActivity : AppCompatActivity() {
 
     fun createDummyData() {
         for (i in 0..10) {
-            create(R.drawable.ic_launcher_background, "やること $i", "住所　$i")
+            create(R.drawable.ic_launcher_background, "お店の名前 $i", "住所　$i")
         }
     }
 
