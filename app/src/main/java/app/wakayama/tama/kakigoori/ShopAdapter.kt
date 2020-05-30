@@ -11,8 +11,6 @@ import androidx.recyclerview.widget.RecyclerView
 import io.realm.OrderedRealmCollection
 import io.realm.RealmRecyclerViewAdapter
 import kotlinx.android.synthetic.main.activity_list.view.*
-import java.text.SimpleDateFormat
-import java.util.*
 
 
 class ShopAdapter(
@@ -32,9 +30,9 @@ class ShopAdapter(
             listener.onItemClick(shop)
         }
         holder.imageView.setImageResource(shop.imageId)
-        holder.contentTextView.text = shop.content
-        holder.dateTextView.text =
-            SimpleDateFormat("yyyy/MM/dd HH:mm:ss", Locale.JAPANESE).format(shop.createdAt)
+        holder.shopNameTextView.text = shop.shopname
+       // holder.dateTextView.text = SimpleDateFormat("yyyy/MM/dd HH:mm:ss", Locale.JAPANESE).format(shop.address)
+        holder.addressTextView.text = shop.address
 
     }
 
@@ -46,8 +44,8 @@ class ShopAdapter(
     class TaskViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val container : LinearLayout = view.container
         val imageView: ImageView = view.imageView
-        val contentTextView: TextView = view.contentTextView
-        val dateTextView: TextView = view.dateTextView
+        val shopNameTextView: TextView = view.shopNameTextView
+        val addressTextView: TextView = view.addressTextView
     }
 
     interface OnItemClickListener {

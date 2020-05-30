@@ -1,6 +1,7 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
+//以下2行　Realmのライブラリを使用できるようにするための設定
 apply plugin: 'kotlin-kapt'
 apply plugin: "realm-android"
 

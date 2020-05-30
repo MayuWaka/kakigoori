@@ -12,6 +12,7 @@ import io.realm.Sort
 
 class MainActivity : AppCompatActivity() {
 
+    //Realm変数
     private val realm: Realm by lazy {
         Realm.getDefaultInstance()
     }
@@ -30,7 +31,7 @@ class MainActivity : AppCompatActivity() {
             ShopAdapter(this, taskList, object : ShopAdapter.OnItemClickListener {
                 override fun onItemClick(item: Shop) {
                     // クリックした処理を書く
-                    Toast.makeText(applicationContext, item.content + "を削除しました", Toast.LENGTH_SHORT)
+                    Toast.makeText(applicationContext, item.shopname + "を削除しました", Toast.LENGTH_SHORT)
                         .show()
                     delete(item)
                 }
@@ -46,35 +47,37 @@ class MainActivity : AppCompatActivity() {
         realm.close()
     }
 
+
     fun createDummyData() {
         for (i in 0..10) {
-            create(R.drawable.ic_launcher_background, "やること $i")
+            create(R.drawable.ic_launcher_background, "やること $i", "住所　$i")
         }
     }
 
-    fun create(imageId: Int, content: String) {
+    fun create(imageId: Int, content: String, address: String) {
         realm.executeTransaction {
             val task = it.createObject(Shop::class.java, UUID.randomUUID().toString())
             task.imageId = imageId
-            task.content = content
+            task.shopname = content
+            task.address = address
         }
     }
 
     fun readAll(): RealmResults<Shop> {
-        return realm.where(Shop::class.java).findAll().sort("createdAt", Sort.ASCENDING)
+        return realm.where(Shop::class.java).findAll().sort("shopname", Sort.ASCENDING)
     }
 
     fun update(id: String, content: String) {
         realm.executeTransaction {
             val task = realm.where(Shop::class.java).equalTo("id", id).findFirst()
                 ?: return@executeTransaction
-            task.content = content
+            task.shopname = content
         }
     }
 
     fun update(task: Shop, content: String) {
         realm.executeTransaction {
-            task.content = content
+            task.shopname = content
         }
     }
 
