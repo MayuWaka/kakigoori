@@ -1,5 +1,6 @@
 package app.wakayama.tama.kakigoori
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -32,8 +33,25 @@ class MainActivity : AppCompatActivity() {
         //FloatingActionButtonの動作実装
         val fab: View = findViewById(R.id.fab)
         fab.setOnClickListener { view ->
-            Snackbar.make(view, "Fabを押しました！", Snackbar.LENGTH_LONG)
-                .setAction("Action", null).show()
+//            Snackbar.make(view, "Fabを押しました！", Snackbar.LENGTH_LONG)
+//                .setAction("Action", null).show()
+            val shopform = Intent(this, ShopFormActivity::class.java)
+            shopform.putExtra("shopname", "")
+            shopform.putExtra("shopaddress", "")
+            shopform.putExtra("memo", "")
+            shopform.putExtra("url", "")
+
+            //お店の情報の登録画面を呼び出す
+            startActivity(shopform)
+
+            //お店の情報の登録画面で設定された値を取り出す
+            val name = shopform.getStringExtra("shopname")
+            val add = shopform.getStringExtra("shopaddress")
+            val memo = shopform.getStringExtra("shopaddress")
+            val url = shopform.getStringExtra("url")
+
+            //データベースへ登録
+            create(R.drawable.ic_launcher_background, name, add)
         }
 
         val adapter =
