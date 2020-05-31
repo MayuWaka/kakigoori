@@ -1,6 +1,7 @@
 package app.wakayama.tama.kakigoori
 
 import android.content.Intent
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -24,18 +25,28 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        val shopform = Intent(this, ShopFormActivity::class.java)
+
         val taskList = readAll()
 
         if (taskList.isEmpty()) {
             createDummyData()
         }
 
+//        //Google Map表示
+////        val mapUrl:String = "geo:0,0?q=" + lat + "," + lng  + "(" + label + ")";
+//        val mapUrl:String = "geo:0,0?q=名古屋 かき氷(お店)"
+//        val sendIntent = Intent(Intent.ACTION_VIEW, Uri.parse(mapUrl))
+////        val sendIntent = Intent(Intent.ACTION_VIEW, Uri.parse("geo:0,0?q=東京駅"))
+//        startActivity(sendIntent)
+
         //FloatingActionButtonの動作実装
         val fab: View = findViewById(R.id.fab)
         fab.setOnClickListener { view ->
 //            Snackbar.make(view, "Fabを押しました！", Snackbar.LENGTH_LONG)
 //                .setAction("Action", null).show()
-            val shopform = Intent(this, ShopFormActivity::class.java)
+
+            shopform.putExtra("ID", "")
             shopform.putExtra("shopname", "")
             shopform.putExtra("shopaddress", "")
             shopform.putExtra("memo", "")
@@ -44,29 +55,38 @@ class MainActivity : AppCompatActivity() {
             //お店の情報の登録画面を呼び出す
             startActivity(shopform)
 
-            //お店の情報の登録画面で設定された値を取り出す
-            val name = shopform.getStringExtra("shopname")
-            val add = shopform.getStringExtra("shopaddress")
-            val memo = shopform.getStringExtra("shopaddress")
-            val url = shopform.getStringExtra("url")
-
-            //データベースへ登録
-            create(R.drawable.ic_launcher_background, name, add)
+//            //お店の情報の登録画面で設定された値を取り出す
+//            val name = shopform.getStringExtra("shopname")
+//            val add = shopform.getStringExtra("shopaddress")
+//            val memo = shopform.getStringExtra("shopaddress")
+//            val url = shopform.getStringExtra("url")
+//
+//            //データベースへ登録
+//            create(R.drawable.ic_launcher_background, name, add)
         }
 
         val adapter =
             ShopAdapter(this, taskList, object : ShopAdapter.OnItemClickListener {
                 override fun onItemClick(item: Shop) {
-                    // クリックした処理を書く
-                    Toast.makeText(applicationContext, item.shopname + "を削除しました", Toast.LENGTH_SHORT)
-                        .show()
-                    delete(item)
+//                    // クリックした処理を書く
+//                    Toast.makeText(applicationContext, item.shopname + "を削除しました", Toast.LENGTH_SHORT)
+//                        .show()
+//                    delete(item)
+
+                    shopform.putExtra("ID", item.id)
+                    shopform.putExtra("shopname", item.shopname)
+                    shopform.putExtra("shopaddress", item.address)
+                    shopform.putExtra("memo", "")
+                    shopform.putExtra("url", "")
+
+                    //お店の情報の登録画面を呼び出す
+                    startActivity(shopform)
                 }
             }, true)
+
         recyclerView.setHasFixedSize(true)
         recyclerView.layoutManager = LinearLayoutManager(this)
         recyclerView.adapter = adapter
-
     }
 
     override fun onDestroy() {
