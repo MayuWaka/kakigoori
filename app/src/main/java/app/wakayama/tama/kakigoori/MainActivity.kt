@@ -7,12 +7,13 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.google.android.material.snackbar.Snackbar
 import io.realm.Realm
 import io.realm.RealmResults
+import io.realm.Sort
 import kotlinx.android.synthetic.main.activity_main.*
 import java.util.*
-import io.realm.Sort
+
+import com.google.android.material.snackbar.Snackbar
 
 class MainActivity : AppCompatActivity() {
 
@@ -24,6 +25,17 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        val data: Uri? = intent?.data
+
+        // Figure out what to do based on the intent type
+        if (intent?.type?.startsWith("image/") == true) {
+            // Handle intents with image data ...
+            val intenti: Intent? = intent
+        } else if (intent?.type == "text/plain") {
+            // Handle intents with text ...
+            val intentt: Intent? = intent
+        }
 
         val shopform = Intent(this, ShopFormActivity::class.java)
 
@@ -91,26 +103,26 @@ class MainActivity : AppCompatActivity() {
 
     override fun onDestroy() {
         super.onDestroy()
-        realm.close()
+        realm.close()   //画面終了時にRealmを終了する
     }
-
 
     fun createDummyData() {
         for (i in 0..10) {
-            create(R.drawable.ic_launcher_background, "お店の名前 $i", "住所　$i")
+            create(R.drawable.ic_launcher_background, "お店の名前 $i", "住所 $i")
         }
     }
 
-    fun create(imageId: Int, content: String, address: String) {
+    fun create(imageId: Int, name: String, address: String) {
         realm.executeTransaction {
-            val task = it.createObject(Shop::class.java, UUID.randomUUID().toString())
-            task.imageId = imageId
-            task.shopname = content
-            task.address = address
+            val shop = it.createObject(Shop::class.java, UUID.randomUUID().toString())
+            shop.imageId = imageId
+            shop.shopname = name
+            shop.address = address
         }
     }
 
     fun readAll(): RealmResults<Shop> {
+//        return realm.where(Shop::class.java).findAll().sort("createdAt", Sort.ASCENDING)
         return realm.where(Shop::class.java).findAll().sort("shopname", Sort.ASCENDING)
     }
 

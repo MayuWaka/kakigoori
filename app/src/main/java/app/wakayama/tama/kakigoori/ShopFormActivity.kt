@@ -42,6 +42,11 @@ class ShopFormActivity : AppCompatActivity() {
         }
     }
 
+    override fun onDestroy() {
+        super.onDestroy()
+        realm.close()   //画面終了時にRealmを終了する
+    }
+
     fun create(imageId: Int, content: String, address: String) {
         realm.executeTransaction {
             val shopcard = it.createObject(Shop::class.java, UUID.randomUUID().toString())

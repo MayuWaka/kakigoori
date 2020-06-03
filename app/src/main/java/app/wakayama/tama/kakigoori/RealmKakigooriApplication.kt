@@ -4,8 +4,11 @@ import android.app.Application
 import io.realm.Realm
 import io.realm.RealmConfiguration
 
-
-class RealmShopMemo: Application() {
+//
+// Applicationクラス
+// ※アプリを起動させるときに一番最初に通るクラス
+//
+class RealmKakigooriApplication: Application() {
     override fun onCreate() {
         super.onCreate()
 
