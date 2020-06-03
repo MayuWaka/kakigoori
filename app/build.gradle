@@ -45,12 +45,13 @@ dependencies {
     implementation 'com.android.support:cardview-v7:29.1.0'
     implementation 'io.realm:android-adapters:3.1.0'
 
-//    implementation 'androidx.preference:preference:1.0.0'
-//    implementation 'androidx.core:core-ktx:1.0.2'
-    implementation 'com.google.android.material:material:1.1.0-alpha06'
-//    implementation 'com.xwray:groupie:2.3.0'
-//    implementation 'com.xwray:groupie-databinding:2.3.0'
-//    implementation 'com.facebook.stetho:stetho:1.5.0'
-//    implementation 'com.uphyca:stetho_realm:2.3.0'
+
+    // MaterialComponentsのBottomNavigationを使うため
+    implementation "com.google.android.material:material:1.1.0-alpha06"
+
+// Navigationを使うため
+    def nav_version = '2.0.0'
+    implementation "androidx.navigation:navigation-fragment-ktx:$nav_version"
+    implementation "androidx.navigation:navigation-ui-ktx:$nav_version"
 
 }

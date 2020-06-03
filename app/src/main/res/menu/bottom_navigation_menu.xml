@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/navi_map"
+        android:icon="@drawable/ic_baseline_place_24"
+        android:title="Map" />
+    <item
+        android:id="@+id/navi_list"
+        android:icon="@drawable/ic_baseline_view_list_24"
+        android:title="List" />
+    <item
+        android:id="@+id/navi_sdiary"
+        android:icon="@drawable/ic_baseline_edit_24"
+        android:title="Diary" />
+    <item
+        android:id="@+id/navi_divination"
+        android:icon="@drawable/ic_baseline_tag_faces_24"
+        android:title="Divination" />
+
+</menu>
