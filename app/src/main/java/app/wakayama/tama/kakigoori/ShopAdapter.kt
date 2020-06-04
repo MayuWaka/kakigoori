@@ -2,7 +2,6 @@ package app.wakayama.tama.kakigoori
 
 import android.widget.ImageView
 import android.widget.LinearLayout
-import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,7 +13,7 @@ import kotlinx.android.synthetic.main.activity_list.view.*
 
 
 class ShopAdapter(
-    private val context: Context,
+    private val context: Fragment2,
     private var ShopList: OrderedRealmCollection<Shop>?,
     private var listener: OnItemClickListener,
     private val autoUpdate: Boolean
