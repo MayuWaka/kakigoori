@@ -10,7 +10,7 @@
         android:icon="@drawable/ic_baseline_view_list_24"
         android:title="List" />
     <item
-        android:id="@+id/navi_sdiary"
+        android:id="@+id/navi_diary"
         android:icon="@drawable/ic_baseline_edit_24"
         android:title="Diary" />
     <item
