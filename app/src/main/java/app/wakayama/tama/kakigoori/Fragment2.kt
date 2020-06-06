@@ -23,7 +23,16 @@ class Fragment2 : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         super.onCreateView(inflater, container, savedInstanceState)
+
         val layout = inflater.inflate(R.layout.fragment_2, container, false)
+
+//        val shopform = Intent(requireContext(), ShopFormActivity::class.java)
+
+        return layout
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
         val shopform = Intent(requireContext(), ShopFormActivity::class.java)
 
@@ -33,10 +42,8 @@ class Fragment2 : Fragment() {
             createDummyData()
         }
 
-
-
         //FloatingActionButtonの動作実装
-        val fab: View = layout.findViewById(R.id.fab)
+        val fab: View = view.findViewById(R.id.fab)
         fab.setOnClickListener { view ->
 //            Snackbar.make(view, "Fabを押しました！", Snackbar.LENGTH_LONG)
 //                .setAction("Action", null).show()
@@ -60,7 +67,7 @@ class Fragment2 : Fragment() {
 //            create(R.drawable.ic_launcher_background, name, add)
         }
 
-        val adapter =
+        var adapterShop =
             ShopAdapter(requireContext(), taskList, object : ShopAdapter.OnItemClickListener {
                 override fun onItemClick(item: Shop) {
 //                    // クリックした処理を書く
@@ -79,11 +86,9 @@ class Fragment2 : Fragment() {
                 }
             }, true)
 
-//        recyclerView.setHasFixedSize(true)
-//        recyclerView.layoutManager = LinearLayoutManager(requireContext())
-//        recyclerView.adapter = adapter
-
-        return layout
+        recyclerView.setHasFixedSize(true)
+        recyclerView.layoutManager = LinearLayoutManager(requireContext())
+        recyclerView.adapter = adapterShop
     }
 
     override fun onDestroy() {
