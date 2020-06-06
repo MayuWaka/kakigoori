@@ -1,5 +1,6 @@
 package app.wakayama.tama.kakigoori
 
+import android.content.Context
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.view.LayoutInflater
@@ -13,11 +14,12 @@ import kotlinx.android.synthetic.main.activity_list.view.*
 
 
 class ShopAdapter(
-    private val context: Fragment2,
+    private val context: Context,
     private var ShopList: OrderedRealmCollection<Shop>?,
     private var listener: OnItemClickListener,
     private val autoUpdate: Boolean
 ) :
+
     RealmRecyclerViewAdapter<Shop, ShopAdapter.TaskViewHolder>(ShopList, autoUpdate) {
 
     override fun getItemCount(): Int = ShopList?.size ?: 0
