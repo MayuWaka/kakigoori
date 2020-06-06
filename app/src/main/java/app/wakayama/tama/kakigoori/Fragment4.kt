@@ -21,6 +21,7 @@ class Fragment4 : Fragment() {
 //            0 -> syuruiText.text = "フランボワーズ氷"
 //                kekkaText.text = "甘酸っぱい恋の予感！？"
 //                    background="#F08080"
+//        kekkaImage=
 //            1 -> syuruiText.text = "サンシャインマスカット氷"
 //                kekkaText.text = "今日は平和な一日になりそう！"
 //                        background="#62D0AA"

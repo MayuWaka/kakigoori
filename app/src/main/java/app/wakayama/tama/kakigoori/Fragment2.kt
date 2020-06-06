@@ -36,7 +36,7 @@ class Fragment2 : Fragment() {
 
 
         //FloatingActionButtonの動作実装
-//        val fab: View = findViewById(R.id.fab)
+        val fab: View = layout.findViewById(R.id.fab)
         fab.setOnClickListener { view ->
 //            Snackbar.make(view, "Fabを押しました！", Snackbar.LENGTH_LONG)
 //                .setAction("Action", null).show()
@@ -79,9 +79,9 @@ class Fragment2 : Fragment() {
                 }
             }, true)
 
-        recyclerView.setHasFixedSize(true)
-        recyclerView.layoutManager = LinearLayoutManager(requireContext())
-        recyclerView.adapter = adapter
+//        recyclerView.setHasFixedSize(true)
+//        recyclerView.layoutManager = LinearLayoutManager(requireContext())
+//        recyclerView.adapter = adapter
 
         return layout
     }
