@@ -8,4 +8,14 @@
     <color name="blue">#7fbfff</color>
     <color name="green">#7fffbf</color>
     <color name="yellow">#ffff7f</color>
+    <color name="koori1">#F08080</color>
+    <color name="koori2">#62D0AA</color>
+    <color name="koori3">#00CED1</color>
+    <color name="koori4">#C692F5</color>
+    <color name="koori5">#FFFFFF</color>
+    <color name="koori6">#FAF0E9</color>
+    <color name="koori7">#FFBD4C</color>
+    <color name="koori8">#4F2E24</color>
+    <color name="koori9">#FCEA6B</color>
+
 </resources>

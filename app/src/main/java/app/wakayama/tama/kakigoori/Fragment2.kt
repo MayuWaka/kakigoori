@@ -21,7 +21,11 @@ class Fragment2 : Fragment() {
         Realm.getDefaultInstance()
     }
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
         super.onCreateView(inflater, container, savedInstanceState)
 
         val layout = inflater.inflate(R.layout.fragment_2, container, false)
@@ -121,38 +125,51 @@ class Fragment2 : Fragment() {
         return realm.where(Shop::class.java).findAll().sort("shopname", Sort.ASCENDING)
     }
 
-    fun update(id: String, content: String) {
+    fun createData(imageId: String,  name: String, address: String, memo: String,url:String) {
         realm.executeTransaction {
             val task = realm.where(Shop::class.java).equalTo("id", id).findFirst()
                 ?: return@executeTransaction
-            task.shopname = content
-        }
-    }
+//            task.imageId = imageId
+            task.shopname = name
+            task.address = address
+            task.memo = memo
+            task.url = url
 
-    fun update(task: Shop, content: String) {
-        realm.executeTransaction {
-            task.shopname = content
-        }
-    }
-
-    fun delete(id: String) {
-        realm.executeTransaction {
-            val task = realm.where(Shop::class.java).equalTo("id", id).findFirst()
-                ?: return@executeTransaction
-            task.deleteFromRealm()
-        }
-    }
-
-    fun delete(task: Shop) {
-        realm.executeTransaction {
-            task.deleteFromRealm()
-        }
-    }
-
-    fun deleteAll() {
-        realm.executeTransaction {
-            realm.deleteAll()
         }
 
+        fun update(id: String, content: String) {
+            realm.executeTransaction {
+                val task = realm.where(Shop::class.java).equalTo("id", id).findFirst()
+                    ?: return@executeTransaction
+                task.shopname = content
+            }
+        }
+
+        fun update(task: Shop, content: String) {
+            realm.executeTransaction {
+                task.shopname = content
+            }
+        }
+
+        fun delete(id: String) {
+            realm.executeTransaction {
+                val task = realm.where(Shop::class.java).equalTo("id", id).findFirst()
+                    ?: return@executeTransaction
+                task.deleteFromRealm()
+            }
+        }
+
+        fun delete(task: Shop) {
+            realm.executeTransaction {
+                task.deleteFromRealm()
+            }
+        }
+
+        fun deleteAll() {
+            realm.executeTransaction {
+                realm.deleteAll()
+            }
+
+        }
     }
 }

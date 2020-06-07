@@ -9,6 +9,9 @@ open class Shop (
     open var imageId: Int = 0,
 //    open var content: String = "",
     open var shopname: String = "",
-    open var address: String = ""
+    open var address: String = "",
+    open  var memo: String = "",
+    open var url:String =""
+
 //    open var createdAt: Date = Date(System.currentTimeMillis())
     ) : RealmObject()

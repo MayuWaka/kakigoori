@@ -41,7 +41,8 @@ class Fragment4 : Fragment() {
                 when (num) {
                     0 -> { syuruiTextView.text = "フランボワーズ氷"
                         kekkaTextView.text = "甘酸っぱい恋の予感！？"
-//                  background="#F08080"
+//                        setBackgroundColor="#F08080"
+
                         ImageButton.setImageResource(R.drawable.uranai1)}
 
 
