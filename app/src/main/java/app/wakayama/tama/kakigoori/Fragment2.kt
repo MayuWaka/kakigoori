@@ -60,7 +60,7 @@ class Fragment2 : Fragment() {
 //            //お店の情報の登録画面で設定された値を取り出す
 //            val name = shopform.getStringExtra("shopname")
 //            val add = shopform.getStringExtra("shopaddress")
-//            val memo = shopform.getStringExtra("shopaddress")
+//            val memo = shopform.getStringExtra("ｍｅｍｏ")
 //            val url = shopform.getStringExtra("url")
 //
 //            //データベースへ登録
@@ -97,9 +97,14 @@ class Fragment2 : Fragment() {
     }
 
     fun createDummyData() {
-        for (i in 0..10) {
-            create(R.drawable.ic_launcher_background, "お店の名前 $i", "住所 $i")
-        }
+        create(R.drawable.uranai0, "A.COCOTTO", "5WFR+Q2 名古屋市、愛知県")
+        create(R.drawable.uranai0, "吾妻茶寮", "5W53+WF 名古屋市、愛知県")
+        create(R.drawable.uranai0, "甘味処 柴ふく", "5W23+MW 名古屋市、愛知県")
+        create(R.drawable.uranai0, "かき氷専門店 あんどりゅ。", "5W64+3G 名古屋市、愛知県")
+        create(R.drawable.uranai0, "shizuku", "5V98+76 名古屋市、愛知県")
+//        for (i in 0..10) {
+//            create(R.drawable.ic_launcher_background, "お店の名前 $i", "住所 $i")
+//        }
     }
 
     fun create(imageId: Int, name: String, address: String) {

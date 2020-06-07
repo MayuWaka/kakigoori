@@ -1,10 +1,11 @@
 package app.wakayama.tama.kakigoori
-//
-//import android.app.AppComponentFactory
-//import android.os.Bundle
-//import androidx.core.content.ContextCompat.startActivity
-//import java.util.logging.Handler
-//
+
+import android.app.AppComponentFactory
+import android.os.Bundle
+import androidx.core.content.ContextCompat.startActivity
+import java.util.logging.Handler
+
+
 //class SplashActivity:AppComponentFactory() {
 //    private val handler = Handler()
 //    private val runnable = Runnable {
@@ -21,6 +22,4 @@ package app.wakayama.tama.kakigoori
 //        super.onStop()
 //        handler.removeCallbacks(runnable)
 //    }
-//
 //}
-

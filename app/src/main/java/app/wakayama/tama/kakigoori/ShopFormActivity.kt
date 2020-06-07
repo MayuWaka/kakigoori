@@ -1,5 +1,7 @@
 package app.wakayama.tama.kakigoori
 
+import android.content.Intent
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import io.realm.Realm
@@ -19,7 +21,7 @@ class ShopFormActivity : AppCompatActivity() {
 
         editTextShopName.setText(intent.getStringExtra("shopname"))
         editTextPostalAddress.setText(intent.getStringExtra("shopaddress"))
-        editTextMemo.setText(intent.getStringExtra("shopaddress"))
+        editTextMemo.setText(intent.getStringExtra("memo"))
         editTextUrl.setText(intent.getStringExtra("url"))
 
         //登録ボタンが押された時に
@@ -35,10 +37,21 @@ class ShopFormActivity : AppCompatActivity() {
 
             //データベースへ登録
 //            create(R.drawable.ic_launcher_background, name, add)
-            update(intent.getStringExtra("ID"), R.drawable.ic_launcher_background, name, add)
+            update(intent.getStringExtra("ID"), R.drawable.uranai0, name, add)
 
             // 画面を閉じる
             finish()
+        }
+
+        //Google Map表示
+        mapButton.setOnClickListener {
+//            val mapUrl:String = "geo:0,0?q=" + lat + "," + lng  + "(" + label + ")";
+//            val mapUrl:String = "geo:0,0?q=名古屋 かき氷(お店)"
+//            val mapUrl:String = "http://plus.codes/" + "5WFR+Q2 名古屋市、愛知県"
+            val mapUrl:String = "http://plus.codes/" + editTextPostalAddress.text +"?q=20"
+            val mapIntent = Intent(Intent.ACTION_VIEW, Uri.parse(mapUrl))
+            mapIntent.setPackage("com.google.android.apps.maps");
+            startActivity(mapIntent)
         }
     }
 
