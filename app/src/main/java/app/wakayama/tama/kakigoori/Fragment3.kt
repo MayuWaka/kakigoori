@@ -40,14 +40,10 @@ class Fragment3 : Fragment() {
         val diaryform = Intent(requireContext(), DiaryFormActivity::class.java)
         val diary = readAll()
 
-        addButton.setOnClickListener {
-            selectPhoto()
-        }
-
-
         val fab: View = view.findViewById(R.id.fab)
         fab.setOnClickListener { view ->
 
+            diaryform.putExtra("ID", "")
             diaryform.putExtra("imageUri", "")
             diaryform.putExtra("shopname", "")
             diaryform.putExtra("memo", "")
@@ -56,10 +52,9 @@ class Fragment3 : Fragment() {
             //お店の情報の登録画面を呼び出す
             startActivity(diaryform)
 
-            recyclerView.setHasFixedSize(true)
-            recyclerView.layoutManager = LinearLayoutManager(requireContext())
+//            recyclerView.setHasFixedSize(true)
+//            recyclerView.layoutManager = LinearLayoutManager(requireContext())
         }
-
 
         var adapterDiary =
             DiaryAdopter(requireContext(), diary, object : DiaryAdopter.OnItemClickListener {
@@ -78,50 +73,14 @@ class Fragment3 : Fragment() {
         recyclerView.setHasFixedSize(true)
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
         recyclerView.adapter = adapterDiary
-
     }
-
-
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-        if (resultCode != AppCompatActivity.RESULT_OK) {
-            return
-        }
-        when (requestCode) {
-            READ_REQUEST_CODE -> {
-                try {
-                    data?.data?.also { uri ->
-                        val inputStream = requireContext().contentResolver.openInputStream(uri)
-                        val image = BitmapFactory.decodeStream(inputStream)
-                        val imageView = imageView
-                        imageView.setImageBitmap(image)
-                    }
-                } catch (e: Exception) {
-                    Toast.makeText(requireContext(), "エラーが発生しました", Toast.LENGTH_LONG).show()
-                }
-            }
-        }
-    }
-
-    private fun selectPhoto() {
-        val intent = Intent(Intent.ACTION_OPEN_DOCUMENT).apply {
-            addCategory(Intent.CATEGORY_OPENABLE)
-            type = "image/*"
-        }
-        startActivityForResult(intent, READ_REQUEST_CODE)
-    }
-
-    companion object {
-        private const val READ_REQUEST_CODE: Int = 42
-    }
-
 
     override fun onDestroy() {
-    super.onDestroy()
-    realm.close()   //画面終了時にRealmを終了する
+        super.onDestroy()
+        realm.close()   //画面終了時にRealmを終了する
     }
 
-    fun create(imageUri: String, name: String, address: String, memo: String, star: String) {
+    fun create(imageUri: String, name: String, address: String, memo: String, star: Float) {
         realm.executeTransaction {
             val diary = it.createObject(Diary::class.java, UUID.randomUUID().toString())
             diary.imageUri = imageUri
@@ -135,6 +94,4 @@ class Fragment3 : Fragment() {
     //        return realm.where(Shop::class.java).findAll().sort("createdAt", Sort.ASCENDING)
         return realm.where(Diary::class.java).findAll().sort("shopname", Sort.ASCENDING)
     }
-
-
 }

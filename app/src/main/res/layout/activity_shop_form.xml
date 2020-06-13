@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:padding="8dp"
     tools:context=".ShopFormActivity">
 
     <TextView
@@ -56,7 +57,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
+        android:backgroundTint="#875647"
+        android:fontFamily="sans-serif-black"
         android:text="登録"
+        android:textColor="#FFFFFF"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
@@ -109,13 +113,12 @@
 
     <Button
         android:id="@+id/mapButton"
-        android:layout_width="64dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="16dp"
-        android:text="Map"
-        app:layout_constraintBottom_toTopOf="@+id/editTextMemo"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextShopName" />
+        android:layout_width="49dp"
+        android:layout_height="41dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="8dp"
+        android:background="@drawable/ic_baseline_place_24"
+        android:backgroundTint="#875647"
+        app:layout_constraintBottom_toBottomOf="@+id/editTextUrl"
+        app:layout_constraintEnd_toEndOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

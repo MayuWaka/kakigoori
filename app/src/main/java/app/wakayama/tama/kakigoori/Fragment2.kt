@@ -22,11 +22,7 @@ class Fragment2 : Fragment() {
         Realm.getDefaultInstance()
     }
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle? ): View? {
         super.onCreateView(inflater, container, savedInstanceState)
         val layout = inflater.inflate(R.layout.fragment_2, container, false)
 

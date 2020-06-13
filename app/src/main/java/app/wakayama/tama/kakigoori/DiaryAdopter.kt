@@ -6,10 +6,12 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.LinearLayout
+import android.widget.RatingBar
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import io.realm.OrderedRealmCollection
 import io.realm.RealmRecyclerViewAdapter
+import kotlinx.android.synthetic.main.activity_diary_form.view.*
 import kotlinx.android.synthetic.main.activity_list.view.*
 import java.nio.file.Files.size
 
@@ -45,9 +47,10 @@ class DiaryAdopter(
 
         class DiaryMemoViewHolder(view: View) : RecyclerView.ViewHolder(view) {
             val container : LinearLayout = view.container
-            val imageView: ImageView = view.imageView
+            val imageUri: ImageView = view.imageView2
+            val memo: TextView = view.textView4
             val shopNameTextView: TextView = view.shopNameTextView
-            val addressTextView: TextView = view.addressTextView
+            val star: RatingBar = view.ratingBar
         }
 
         interface OnItemClickListener {
