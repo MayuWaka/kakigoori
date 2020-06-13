@@ -9,8 +9,11 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageButton
 import androidx.fragment.app.Fragment
+import kotlinx.android.synthetic.main.fragment_2.*
+import kotlinx.android.synthetic.main.fragment_3.*
 import kotlinx.android.synthetic.main.fragment_4.*
 import kotlin.random.Random
+
 
 class Fragment4 : Fragment() {
 
@@ -41,49 +44,59 @@ class Fragment4 : Fragment() {
                 when (num) {
                     0 -> { syuruiTextView.text = "フランボワーズ氷"
                         kekkaTextView.text = "甘酸っぱい恋の予感！？"
-//                        setBackgroundColor="#F08080"
-
+//                        fragment2.setBackgroundResource(R.color.koori1)
+//                        fragment3.setBackgroundResource(R.color.koori1)
+                        fragment4.setBackgroundResource(R.color.koori1)
                         ImageButton.setImageResource(R.drawable.uranai1)}
 
 
                     1 -> { syuruiTextView.text = "マスカット氷"
                         kekkaTextView.text = "今日は平和な一日になりそう！"
-//                    background="#62D0AA"
+//                        fragment2.setBackgroundResource(R.color.koori2)
+//                        fragment3.setBackgroundResource(R.color.koori2)
+                        fragment4.setBackgroundResource(R.color.koori2)
                         ImageButton.setImageResource(R.drawable.uranai2)}
 
                     2 ->{   syuruiTextView.text = "チョコミント氷"
                         kekkaTextView.text = "お仕事、勉強がはかどる一日になりそう！"
 //                    background="#00CED1"
+                        fragment4.setBackgroundResource(R.color.koori3)
                         ImageButton.setImageResource(R.drawable.uranai3)}
 
                     3 -> {  syuruiTextView.text = "ブルーベリー氷"
                         kekkaTextView.text = "疲れがたまってきているかも。リフレッシュしよう！"
 //                    background="#C692F5"
+                        fragment4.setBackgroundResource(R.color.koori4)
                         ImageButton.setImageResource(R.drawable.uranai4)}
 
                     4 -> {  syuruiTextView.text = "酒粕氷"
                         kekkaTextView.text = "気分転換をすると良いことあるかも！！"
 //                    background="#FFFFFF"
+                        fragment4.setBackgroundResource(R.color.koori5)
                         ImageButton.setImageResource(R.drawable.uranai5)}
 
                     5 -> {  syuruiTextView.text = "マロン氷"
                         kekkaTextView.text = "友達とより仲良くなることが起こるかも！？"
 //                    background="#FAF0E9"
+                        fragment4.setBackgroundResource(R.color.koori6)
                         ImageButton.setImageResource(R.drawable.uranai6)}
 
                     6 ->{   syuruiTextView.text = "オレンジ氷"
                         kekkaTextView.text = "今日は新しい友達が出来るかも！？"
 //                    background="#FFBD4C"
+                        fragment4.setBackgroundResource(R.color.koori7)
                         ImageButton.setImageResource(R.drawable.uranai7)}
 
                     7 -> {  syuruiTextView.text = "チョコ氷"
                         kekkaTextView.text = "今日は全てがうまくいく予感！"
 //                    background="#4F2E24"
+                        fragment4.setBackgroundResource(R.color.koori8)
                         ImageButton.setImageResource(R.drawable.uranai8)}
 
                     8 -> {  syuruiTextView.text = "ゴールデンピーチ氷"
                         kekkaTextView.text = "今日は金運アップ！！"
 //                    background="#FCEA6B"
+                        fragment4.setBackgroundResource(R.color.koori9)
                         ImageButton.setImageResource(R.drawable.uranai9)}
 
                 }
@@ -99,14 +112,16 @@ class Fragment4 : Fragment() {
                 if(index==9)
                     index= 0
 
-                if(sec > 3.0f)
-                    textView6.text = "ドゥル"
-                else if(sec > 2.0f)
-                    textView6.text = "ドゥルル"
-                else if(sec > 1.0f)
-                    textView6.text = "ドゥルルル"
-                else
-                    textView6.text = "ドゥルルルル・・"
+                textView6.text = ""
+
+//                if(sec > 3.0f)
+//                    textView6.text = "ドゥル"
+//                else if(sec > 2.0f)
+//                    textView6.text = "ドゥルル"
+//                else if(sec > 1.0f)
+//                    textView6.text = "ドゥルルル"
+//                else
+//                    textView6.text = "ドゥルルルル・・"
             }
         }
 

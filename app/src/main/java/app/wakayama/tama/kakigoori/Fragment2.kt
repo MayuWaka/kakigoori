@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import io.realm.Realm
 import io.realm.RealmResults
 import io.realm.Sort
+import kotlinx.android.synthetic.main.activity_shop_form.*
 import kotlinx.android.synthetic.main.fragment_2.*
 import java.util.*
 
@@ -27,10 +28,7 @@ class Fragment2 : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         super.onCreateView(inflater, container, savedInstanceState)
-
         val layout = inflater.inflate(R.layout.fragment_2, container, false)
-
-//        val shopform = Intent(requireContext(), ShopFormActivity::class.java)
 
         return layout
     }
@@ -60,15 +58,6 @@ class Fragment2 : Fragment() {
 
             //お店の情報の登録画面を呼び出す
             startActivity(shopform)
-
-//            //お店の情報の登録画面で設定された値を取り出す
-//            val name = shopform.getStringExtra("shopname")
-//            val add = shopform.getStringExtra("shopaddress")
-//            val memo = shopform.getStringExtra("ｍｅｍｏ")
-//            val url = shopform.getStringExtra("url")
-//
-//            //データベースへ登録
-//            create(R.drawable.ic_launcher_background, name, add)
         }
 
         var adapterShop =
@@ -82,8 +71,8 @@ class Fragment2 : Fragment() {
                     shopform.putExtra("ID", item.id)
                     shopform.putExtra("shopname", item.shopname)
                     shopform.putExtra("shopaddress", item.address)
-                    shopform.putExtra("memo", "")
-                    shopform.putExtra("url", "")
+                    shopform.putExtra("memo", item.memo)
+                    shopform.putExtra("url" , item.url)
 
                     //お店の情報の登録画面を呼び出す
                     startActivity(shopform)
@@ -101,22 +90,24 @@ class Fragment2 : Fragment() {
     }
 
     fun createDummyData() {
-        create(R.drawable.uranai0, "A.COCOTTO", "5WFR+Q2 名古屋市、愛知県")
-        create(R.drawable.uranai0, "吾妻茶寮", "5W53+WF 名古屋市、愛知県")
-        create(R.drawable.uranai0, "甘味処 柴ふく", "5W23+MW 名古屋市、愛知県")
-        create(R.drawable.uranai0, "かき氷専門店 あんどりゅ。", "5W64+3G 名古屋市、愛知県")
-        create(R.drawable.uranai0, "shizuku", "5V98+76 名古屋市、愛知県")
+        create(R.drawable.uranai0, "A.COCOTTO", "5WFR+Q2 名古屋市、愛知県","ぽってり","https://tabelog.com/aichi/A2301/A230106/23064440/")
+        create(R.drawable.uranai0, "吾妻茶寮", "5W53+WF 名古屋市、愛知県","エスプーマ","https://tabelog.com/aichi/A2301/A230105/23053848/")
+        create(R.drawable.uranai0, "甘味処 柴ふく", "5W23+MW 名古屋市、愛知県","きなこ美味しい","https://tabelog.com/aichi/A2301/A230105/23031436/")
+        create(R.drawable.uranai0, "かき氷専門店 あんどりゅ。", "5W64+3G 名古屋市、愛知県","氷がふわふわ","https://tabelog.com/aichi/A2301/A230105/23054827/")
+        create(R.drawable.uranai0, "shizuku", "5V98+76 名古屋市、愛知県","お茶","https://tabelog.com/aichi/A2301/A230101/23060207/")
 //        for (i in 0..10) {
 //            create(R.drawable.ic_launcher_background, "お店の名前 $i", "住所 $i")
 //        }
     }
 
-    fun create(imageId: Int, name: String, address: String) {
+    fun create(imageId: Int, name: String, address: String, memo: String, url: String) {
         realm.executeTransaction {
             val shop = it.createObject(Shop::class.java, UUID.randomUUID().toString())
             shop.imageId = imageId
             shop.shopname = name
             shop.address = address
+            shop.memo = memo
+            shop.url = url
         }
     }
 
@@ -125,51 +116,50 @@ class Fragment2 : Fragment() {
         return realm.where(Shop::class.java).findAll().sort("shopname", Sort.ASCENDING)
     }
 
-    fun createData(imageId: String,  name: String, address: String, memo: String,url:String) {
+    fun createData(imageId: Int,  name: String, address: String, memo: String,url:String) {
+        realm.executeTransaction {
+            val shop = it.createObject(Shop::class.java, UUID.randomUUID().toString())
+            shop.imageId = imageId
+            shop.shopname = name
+            shop.address = address
+            shop.memo = memo
+            shop.url = url
+
+        }
+    }
+
+    fun update(id: String, content: String) {
         realm.executeTransaction {
             val task = realm.where(Shop::class.java).equalTo("id", id).findFirst()
                 ?: return@executeTransaction
-//            task.imageId = imageId
-            task.shopname = name
-            task.address = address
-            task.memo = memo
-            task.url = url
+            task.shopname = content
+        }
+    }
 
+    fun update(task: Shop, content: String) {
+        realm.executeTransaction {
+            task.shopname = content
+        }
+    }
+
+    fun delete(id: String) {
+        realm.executeTransaction {
+            val task = realm.where(Shop::class.java).equalTo("id", id).findFirst()
+                ?: return@executeTransaction
+            task.deleteFromRealm()
+        }
+    }
+
+    fun delete(task: Shop) {
+        realm.executeTransaction {
+            task.deleteFromRealm()
+        }
+    }
+
+    fun deleteAll() {
+        realm.executeTransaction {
+            realm.deleteAll()
         }
 
-        fun update(id: String, content: String) {
-            realm.executeTransaction {
-                val task = realm.where(Shop::class.java).equalTo("id", id).findFirst()
-                    ?: return@executeTransaction
-                task.shopname = content
-            }
-        }
-
-        fun update(task: Shop, content: String) {
-            realm.executeTransaction {
-                task.shopname = content
-            }
-        }
-
-        fun delete(id: String) {
-            realm.executeTransaction {
-                val task = realm.where(Shop::class.java).equalTo("id", id).findFirst()
-                    ?: return@executeTransaction
-                task.deleteFromRealm()
-            }
-        }
-
-        fun delete(task: Shop) {
-            realm.executeTransaction {
-                task.deleteFromRealm()
-            }
-        }
-
-        fun deleteAll() {
-            realm.executeTransaction {
-                realm.deleteAll()
-            }
-
-        }
     }
 }

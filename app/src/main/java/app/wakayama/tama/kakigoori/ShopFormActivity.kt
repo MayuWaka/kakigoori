@@ -5,6 +5,7 @@ import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import io.realm.Realm
+import kotlinx.android.synthetic.main.activity_list.*
 import kotlinx.android.synthetic.main.activity_shop_form.*
 import java.util.*
 
@@ -24,6 +25,15 @@ class ShopFormActivity : AppCompatActivity() {
         editTextMemo.setText(intent.getStringExtra("memo"))
         editTextUrl.setText(intent.getStringExtra("url"))
 
+        var nakami = 0
+
+        if (editTextShopName.text.toString() == "" ){
+             nakami = 1
+        }else {
+             nakami = 2
+        }
+
+
         //登録ボタンが押された時に
         addButton.setOnClickListener {
 //            intent.putExtra("shopname", editTextShopName.text.toString())
@@ -32,12 +42,19 @@ class ShopFormActivity : AppCompatActivity() {
 //            intent.putExtra("url", editTextUrl.text.toString())
 //
 
+            //データベースへ登録
+            val id:String? = intent.getStringExtra("ID")
             val name: String  = editTextShopName.text.toString()
             val add: String  = editTextPostalAddress.text.toString()
+            val memo: String = editTextMemo.text.toString()
+            val url: String = editTextUrl.text.toString()
+            val imageId:Int =  R.drawable.uranai0
 
-            //データベースへ登録
-//            create(R.drawable.ic_launcher_background, name, add)
-            update(intent.getStringExtra("ID"), R.drawable.uranai0, name, add)
+            if (nakami == 1){
+                create(imageId ,name,add,memo,url )
+            } else if (nakami == 2){
+                update(id,imageId ,name,add,memo,url)
+            }
 
             // 画面を閉じる
             finish()
@@ -60,22 +77,26 @@ class ShopFormActivity : AppCompatActivity() {
         realm.close()   //画面終了時にRealmを終了する
     }
 
-    fun create(imageId: Int, content: String, address: String) {
+    fun create(imageId: Int, shopName: String, address: String, memo:String, url : String) {
         realm.executeTransaction {
             val shopcard = it.createObject(Shop::class.java, UUID.randomUUID().toString())
             shopcard.imageId = imageId
-            shopcard.shopname = content
+            shopcard.shopname = shopName
             shopcard.address = address
+            shopcard.memo = memo
+            shopcard.url = url
         }
     }
 
-    fun update(id: String?, imageId: Int, content: String, address: String) {
+    fun update(id: String?, imageId: Int, shopName: String, address: String,memo:String, url : String) {
         realm.executeTransaction {
             val shopcard = realm.where(Shop::class.java).equalTo("id", id).findFirst()
                 ?: return@executeTransaction
             shopcard.imageId = imageId
-            shopcard.shopname = content
+            shopcard.shopname = shopName
             shopcard.address = address
+            shopcard.memo = memo
+            shopcard.url = url
         }
     }
 }

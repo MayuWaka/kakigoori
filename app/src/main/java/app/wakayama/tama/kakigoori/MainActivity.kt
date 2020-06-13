@@ -2,13 +2,10 @@ package app.wakayama.tama.kakigoori
 
 import android.content.Intent
 import android.net.Uri
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.View
-import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
 import androidx.navigation.ui.NavigationUI.setupWithNavController
-import androidx.navigation.fragment.NavHostFragment.findNavController
 import kotlinx.android.synthetic.main.activity_main.*
 
 
@@ -16,8 +13,15 @@ class MainActivity : AppCompatActivity() {
 
 
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
+        override fun onCreate(savedInstanceState: Bundle?) {
+            super.onCreate(savedInstanceState)
+            // ここで1秒間スリープし、スプラッシュを表示させたままにする。
+            try {
+                Thread.sleep(1000)
+            } catch (e: InterruptedException) {
+            }
+            // スプラッシュthemeを通常themeに変更する
+            setTheme(R.style.AppTheme)
         setContentView(R.layout.activity_main)
 
         val navController = findNavController(R.id.nav_host_fragment)

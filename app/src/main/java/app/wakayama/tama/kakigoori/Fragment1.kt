@@ -36,12 +36,12 @@ class Fragment1 : Fragment() {
         }
         placesClient = Places.createClient(context!!)
 
-                //Google Map表示
-//        val mapUrl:String = "geo:0,0?q=" + lat + "," + lng  + "(" + label + ")";
-        val mapUrl:String = "geo:0,0?q=名古屋 かき氷(お店)"
-        val sendIntent = Intent(Intent.ACTION_VIEW, Uri.parse(mapUrl))
-//        val sendIntent = Intent(Intent.ACTION_VIEW, Uri.parse("geo:0,0?q=東京駅"))
-        startActivity(sendIntent)
+//                //Google Map表示
+////        val mapUrl:String = "geo:0,0?q=" + lat + "," + lng  + "(" + label + ")";
+//        val mapUrl:String = "geo:0,0?q=名古屋 かき氷(お店)"
+//        val sendIntent = Intent(Intent.ACTION_VIEW, Uri.parse(mapUrl))
+////        val sendIntent = Intent(Intent.ACTION_VIEW, Uri.parse("geo:0,0?q=東京駅"))
+//        startActivity(sendIntent)
 
 // Initialize the AutocompleteSupportFragment.
 
