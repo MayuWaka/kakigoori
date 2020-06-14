@@ -5,7 +5,6 @@ import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import io.realm.Realm
-import kotlinx.android.synthetic.main.activity_list.*
 import kotlinx.android.synthetic.main.activity_shop_form.*
 import java.util.*
 
@@ -22,7 +21,7 @@ class ShopFormActivity : AppCompatActivity() {
 
         editTextShopName.setText(intent.getStringExtra("shopname"))
         editTextPostalAddress.setText(intent.getStringExtra("shopaddress"))
-        editTextMemo.setText(intent.getStringExtra("memo"))
+        diaryMemo.setText(intent.getStringExtra("memo"))
         editTextUrl.setText(intent.getStringExtra("url"))
 
         var nakami = 0
@@ -46,7 +45,7 @@ class ShopFormActivity : AppCompatActivity() {
             val id:String? = intent.getStringExtra("ID")
             val name: String  = editTextShopName.text.toString()
             val add: String  = editTextPostalAddress.text.toString()
-            val memo: String = editTextMemo.text.toString()
+            val memo: String = diaryMemo.text.toString()
             val url: String = editTextUrl.text.toString()
             val imageId:Int =  R.drawable.uranai0
 

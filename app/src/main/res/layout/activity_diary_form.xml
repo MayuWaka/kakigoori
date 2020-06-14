@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/diaryList"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
     tools:context=".ShopFormActivity">
 
 
@@ -13,8 +13,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
         android:text="店名"
+        app:layout_constraintBottom_toTopOf="@+id/editTextShopName"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -22,26 +24,25 @@
         android:id="@+id/editTextShopName"
         android:layout_width="350dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
         android:ems="10"
         android:hint="店名"
         android:inputType="textPersonName"
+        app:layout_constraintBottom_toTopOf="@+id/imageView2"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.491"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView2" />
+        app:layout_constraintHorizontal_bias="0.737"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <ImageView
         android:id="@+id/imageView2"
-        android:layout_width="300dp"
-        android:layout_height="200dp"
-        android:layout_marginTop="8dp"
+        android:layout_width="296dp"
+        android:layout_height="175dp"
         android:layout_marginBottom="8dp"
+        android:background="@drawable/syasin"
         app:layout_constraintBottom_toTopOf="@+id/textView4"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextShopName"
-        app:layout_constraintVertical_bias="0.602"
         app:srcCompat="@android:drawable/ic_menu_camera" />
 
     <Button
@@ -55,39 +56,38 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
-        android:id="@+id/editTextMemo"
-        android:layout_width="350dp"
-        android:layout_height="150dp"
-        android:layout_marginTop="8dp"
+        android:id="@+id/diaryMemoEdit"
+        android:layout_width="355dp"
+        android:layout_height="102dp"
         android:ems="10"
         android:gravity="start|top"
         android:hint="メモ"
         android:inputType="textMultiLine"
+        app:layout_constraintBottom_toTopOf="@+id/ratingBar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.737"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView4" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/textView4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="28dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginBottom="8dp"
         android:text="メモ"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="397dp" />
+        app:layout_constraintBottom_toTopOf="@+id/diaryMemoEdit"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <RatingBar
         android:id="@+id/ratingBar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
         android:numStars="5"
         android:rating="0"
         android:stepSize="1"
+        app:layout_constraintBottom_toTopOf="@+id/addButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextMemo" />
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

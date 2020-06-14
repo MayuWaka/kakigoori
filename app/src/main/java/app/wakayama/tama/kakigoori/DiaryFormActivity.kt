@@ -1,22 +1,13 @@
 package app.wakayama.tama.kakigoori
-import android.content.Context
 import android.content.Intent
 import android.graphics.BitmapFactory
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.RatingBar
 import android.widget.Toast
-import androidx.core.content.ContentProviderCompat.requireContext
-import app.wakayama.tama.kakigoori.DiaryFormActivity.Companion.READ_REQUEST_CODE
 import io.realm.Realm
-import kotlinx.android.synthetic.main.activity_diary.*
 import kotlinx.android.synthetic.main.activity_diary_form.*
-import kotlinx.android.synthetic.main.activity_list.*
-import kotlinx.android.synthetic.main.activity_list.imageView
-import kotlinx.android.synthetic.main.activity_shop_form.*
 import kotlinx.android.synthetic.main.activity_shop_form.addButton
-import kotlinx.android.synthetic.main.activity_shop_form.editTextMemo
 import kotlinx.android.synthetic.main.activity_shop_form.editTextShopName
 import java.util.*
 
@@ -33,7 +24,7 @@ class DiaryFormActivity : AppCompatActivity() {
         setContentView(R.layout.activity_diary_form)
 
         editTextShopName.setText(intent.getStringExtra("shopname"))
-        editTextMemo.setText(intent.getStringExtra("memo"))
+        diaryMemoEdit.setText(intent.getStringExtra("memo"))
         imageView2.setImageURI(Uri.parse(intent.getStringExtra("imageUri")))
         ratingBar.setRating(intent.getFloatExtra("star", 0.0F))
 
@@ -61,7 +52,7 @@ class DiaryFormActivity : AppCompatActivity() {
             //データベースへ登録
             val id: String? = intent.getStringExtra("ID")
             val name: String = editTextShopName.text.toString()
-            val memo: String = editTextMemo.text.toString()
+            val memo: String = diaryMemoEdit.text.toString()
             val imageUri: String = imageView2.id.toString()
             val star: Float = ratingBar.rating
 
@@ -126,7 +117,7 @@ class DiaryFormActivity : AppCompatActivity() {
                     data?.data?.also { uri ->
                         val inputStream = contentResolver.openInputStream(uri)
                         val image = BitmapFactory.decodeStream(inputStream)
-                        val imageView = imageView
+                        val imageView = imageView2
                         imageView.setImageBitmap(image)
                     }
                 } catch (e: Exception) {
