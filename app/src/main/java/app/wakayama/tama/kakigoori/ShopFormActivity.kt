@@ -63,7 +63,8 @@ class ShopFormActivity : AppCompatActivity() {
 //            val mapUrl:String = "geo:0,0?q=" + lat + "," + lng  + "(" + label + ")";
 //            val mapUrl:String = "geo:0,0?q=名古屋 かき氷(お店)"
 //            val mapUrl:String = "http://plus.codes/" + "5WFR+Q2 名古屋市、愛知県"
-            val mapUrl:String = "http://plus.codes/" + editTextPostalAddress.text +"?q=20"
+//            val mapUrl:String = "http://plus.codes/" + editTextPostalAddress.text +"?q=20"
+            val mapUrl:String = editTextUrl.text.toString()
             val mapIntent = Intent(Intent.ACTION_VIEW, Uri.parse(mapUrl))
             mapIntent.setPackage("com.google.android.apps.maps");
             startActivity(mapIntent)

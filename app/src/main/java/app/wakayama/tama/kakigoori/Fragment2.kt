@@ -138,11 +138,11 @@ class Fragment2 : Fragment() {
     }
 
     fun createDummyData() {
-        create(R.drawable.uranai0, "A.COCOTTO", "5WFR+Q2 名古屋市、愛知県","ぽってり","https://tabelog.com/aichi/A2301/A230106/23064440/")
-        create(R.drawable.uranai0, "吾妻茶寮", "5W53+WF 名古屋市、愛知県","エスプーマ","https://tabelog.com/aichi/A2301/A230105/23053848/")
-        create(R.drawable.uranai0, "甘味処 柴ふく", "5W23+MW 名古屋市、愛知県","きなこ美味しい","https://tabelog.com/aichi/A2301/A230105/23031436/")
-        create(R.drawable.uranai0, "かき氷専門店 あんどりゅ。", "5W64+3G 名古屋市、愛知県","氷がふわふわ","https://tabelog.com/aichi/A2301/A230105/23054827/")
-        create(R.drawable.uranai0, "shizuku", "5V98+76 名古屋市、愛知県","お茶","https://tabelog.com/aichi/A2301/A230101/23060207/")
+        create(R.drawable.uranai0, "A.COCOTTO", "〒464-0077 愛知県名古屋市千種区神田町２８−２３ １ 階 青山マンション","ぽってり","https://goo.gl/maps/PkXwbbXmBbC3v4up9")
+        create(R.drawable.uranai0, "吾妻茶寮", "〒460-0011 愛知県名古屋市中区大須３丁目２２−３３","エスプーマ","https://goo.gl/maps/twZuarLXTSBJDBDHA")
+        create(R.drawable.uranai0, "甘味処 柴ふく", "〒460-0015 愛知県名古屋市中区大井町１−４５","きなこ美味しい","https://goo.gl/maps/crN6SuNTCocN9KeD8")
+        create(R.drawable.uranai0, "かき氷専門店 あんどりゅ。", "〒460-0011 愛知県名古屋市中区大須４丁目２−４７","氷がふわふわ","https://goo.gl/maps/uBEUYk9dK28kpuRTA")
+        create(R.drawable.uranai0, "shizuku", "〒453-0811 愛知県名古屋市中村区太閤通６丁目８","お茶","https://goo.gl/maps/4ZH1jwCL72n6eFmA6")
 //        for (i in 0..10) {
 //            create(R.drawable.ic_launcher_background, "お店の名前 $i", "住所 $i")
 //        }

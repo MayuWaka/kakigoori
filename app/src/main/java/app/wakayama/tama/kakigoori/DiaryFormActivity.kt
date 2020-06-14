@@ -6,9 +6,8 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
 import io.realm.Realm
+import kotlinx.android.synthetic.main.activity_diary.*
 import kotlinx.android.synthetic.main.activity_diary_form.*
-import kotlinx.android.synthetic.main.activity_shop_form.addButton
-import kotlinx.android.synthetic.main.activity_shop_form.editTextShopName
 import java.util.*
 
 class DiaryFormActivity : AppCompatActivity() {
@@ -23,43 +22,31 @@ class DiaryFormActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_diary_form)
 
+        val intentMode: Int = intent.getStringExtra("Mode").toInt()
+
         editTextShopName.setText(intent.getStringExtra("shopname"))
-        diaryMemoEdit.setText(intent.getStringExtra("memo"))
         imageView2.setImageURI(Uri.parse(intent.getStringExtra("imageUri")))
+        diaryMemoEdit.setText(intent.getStringExtra("memo"))
         ratingBar.setRating(intent.getFloatExtra("star", 0.0F))
 
-        var nakami = 0
-
-        if (editTextShopName.text.toString() == "") {
-            nakami = 1
-        } else {
-            nakami = 2
-        }
-
+        // 写真選択
         imageView2.setOnClickListener {
             selectPhoto()
         }
 
-
         //登録ボタンが押された時に
         addButton.setOnClickListener {
-//            intent.putExtra("shopname", editTextShopName.text.toString())
-//            intent.putExtra("shopaddress", editTextPostalAddress.text.toString())
-//            intent.putExtra("memo", editTextMemo.text.toString())
-//            intent.putExtra("url", editTextUrl.text.toString())
-//
-
             //データベースへ登録
             val id: String? = intent.getStringExtra("ID")
-            val name: String = editTextShopName.text.toString()
+            val shopName: String = editTextShopName.text.toString()
             val memo: String = diaryMemoEdit.text.toString()
             val imageUri: String = imageView2.id.toString()
-            val star: Float = ratingBar.rating
+            val star: Float = ratingBar.rating.toFloat()
 
-            if (nakami == 1) {
-                create(imageUri, name, memo, star)
-            } else if (nakami == 2) {
-                update( id, imageUri, name, memo, star)
+            if (intentMode == 1) {
+                create(shopName, imageUri, memo, star)
+            } else if (intentMode == 2) {
+                update( id, shopName, imageUri, memo, star)
             }
 
             // 画面を閉じる
@@ -83,24 +70,23 @@ class DiaryFormActivity : AppCompatActivity() {
         realm.close()   //画面終了時にRealmを終了する
     }
 
-    fun create(imageUri: String, shopName: String, memo: String, star: Float) {
+    fun create(shopName: String, imageUri: String, memo: String, star: Float) {
         realm.executeTransaction {
             val diarycard = it.createObject(Diary::class.java, UUID.randomUUID().toString())
-            diarycard.imageUri = imageUri
             diarycard.shopname = shopName
+            diarycard.imageUri = imageUri
             diarycard.memo = memo
             diarycard.star = star
         }
     }
 
-
-    fun update(id: String?, imageUri: String, shopName: String, memo: String, star: Float) {
+    fun update(id: String?, shopName: String, imageUri: String, memo: String, star: Float) {
         realm.executeTransaction {
             val diarycard = realm.where(Diary::class.java).equalTo("id", id).findFirst()
                 ?: return@executeTransaction
             diarycard.id= id
-            diarycard.imageUri = imageUri
             diarycard.shopname = shopName
+            diarycard.imageUri = imageUri
             diarycard.memo = memo
             diarycard.star = star
         }

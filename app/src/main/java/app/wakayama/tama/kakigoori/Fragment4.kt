@@ -10,11 +10,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageButton
-import androidx.fragment.app.Fragment
-import kotlinx.android.synthetic.main.fragment_1.*
-import kotlinx.android.synthetic.main.fragment_2.*
-import kotlinx.android.synthetic.main.fragment_3.*
 import kotlinx.android.synthetic.main.fragment_4.*
+import androidx.fragment.app.Fragment
 import kotlin.random.Random
 
 class Fragment4 : Fragment() {

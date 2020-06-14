@@ -32,29 +32,38 @@ class Fragment3 : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         val diaryform = Intent(requireContext(), DiaryFormActivity::class.java)
-        val diary = readAll()
+
+        val diaryList = readAll()
+
+        if (diaryList.isEmpty()) {
+            createDummyData()
+        }
 
         val fab: View = view.findViewById(R.id.fab)
         fab.setOnClickListener { view ->
 
+            diaryform.putExtra("Mode", "1")  // 追加
             diaryform.putExtra("ID", "")
-            diaryform.putExtra("imageUri", "")
             diaryform.putExtra("shopname", "")
+            diaryform.putExtra("imageUri", "")
             diaryform.putExtra("memo", "")
             diaryform.putExtra("star", "")
+            diaryform.putExtra("date", "")
 
             //お店の情報の登録画面を呼び出す
             startActivity(diaryform)
         }
 
         var adapterDiary =
-            DiaryAdopter(requireContext(), diary, object : DiaryAdopter.OnItemClickListener {
+            DiaryAdopter(requireContext(), diaryList, object : DiaryAdopter.OnItemClickListener {
                 override fun onItemClick(item: Diary) {
 
-                    diaryform.putExtra("imageUri", item.imageUri)
+                    diaryform.putExtra("Mode", "2")  // 更新
                     diaryform.putExtra("shopname", item.shopname)
+                    diaryform.putExtra("imageUri", item.imageUri)
                     diaryform.putExtra("memo", item.memo)
                     diaryform.putExtra("star", item.star)
+                    diaryform.putExtra("date", item.createdAt)
 
                     //お店の情報の登録画面を呼び出す
                     startActivity(diaryform)
@@ -71,18 +80,22 @@ class Fragment3 : Fragment() {
         realm.close()   //画面終了時にRealmを終了する
     }
 
-    fun create(imageUri: String, name: String, address: String, memo: String, star: Float) {
+    fun createDummyData() {
+        create("A.COCOTTO", "", "ぽってりしておいしかった。", 3.0F)
+        create("A.COCOTTO", "", "ぼってりだった。", 1.0F)
+    }
+
+    fun create(shopName: String, imageUri: String, memo: String, star: Float) {
         realm.executeTransaction {
-            val diary = it.createObject(Diary::class.java, UUID.randomUUID().toString())
-            diary.imageUri = imageUri
-            diary.shopname = name
-            diary.memo = memo
-            diary.star = star
+            val diarycard = it.createObject(Diary::class.java, UUID.randomUUID().toString())
+            diarycard.shopname = shopName
+            diarycard.imageUri = imageUri
+            diarycard.memo = memo
+            diarycard.star = star
         }
     }
 
     fun readAll(): RealmResults<Diary> {
-    //        return realm.where(Shop::class.java).findAll().sort("createdAt", Sort.ASCENDING)
-        return realm.where(Diary::class.java).findAll().sort("shopname", Sort.ASCENDING)
+          return realm.where(Diary::class.java).findAll().sort("createdAt", Sort.DESCENDING)
     }
 }

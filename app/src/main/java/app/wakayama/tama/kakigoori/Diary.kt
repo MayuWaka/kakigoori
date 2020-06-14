@@ -9,8 +9,6 @@ open class Diary (
     open var shopname: String = "",
     open var imageUri: String = "",
     open  var memo: String = "",
-    open var star:Float = 0.0F
-//    open var date: Date
-
-//    open var createdAt: Date = Date(System.currentTimeMillis())
+    open var star:Float = 0.0F,
+    open var createdAt: Date = Date(System.currentTimeMillis())
 ) : RealmObject()

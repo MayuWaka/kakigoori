@@ -41,6 +41,7 @@ class DiaryAdopter(
             holder.imageUri.setImageURI(Uri.parse(diary.imageUri))
             holder.memo.text= diary.memo
             holder.star.setRating(diary.star)
+            holder.createdAt.text = diary.createdAt.toString()
         }
 
         override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): DiaryMemoViewHolder {
@@ -54,6 +55,7 @@ class DiaryAdopter(
             val memo: TextView = view.textView4
             val shopNameTextView: TextView = view.shopNameTextView
             val star: RatingBar = view.ratingBar
+            val createdAt:TextView = view.editTextDate
         }
 
         interface OnItemClickListener {
