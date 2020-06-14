@@ -12,6 +12,5 @@ open class Shop (
     open var address: String = "",
     open  var memo: String = "",
     open var url:String =""
-
 //    open var createdAt: Date = Date(System.currentTimeMillis())
     ) : RealmObject()

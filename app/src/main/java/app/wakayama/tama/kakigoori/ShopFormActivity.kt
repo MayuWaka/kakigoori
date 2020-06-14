@@ -4,6 +4,7 @@ import android.content.Intent
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.fragment.app.Fragment
 import io.realm.Realm
 import kotlinx.android.synthetic.main.activity_shop_form.*
 import java.util.*
@@ -19,19 +20,12 @@ class ShopFormActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_shop_form)
 
+        val intentMode: Int = intent.getStringExtra("Mode").toInt()
+
         editTextShopName.setText(intent.getStringExtra("shopname"))
         editTextPostalAddress.setText(intent.getStringExtra("shopaddress"))
-        diaryMemo.setText(intent.getStringExtra("memo"))
+        editTextMemo.setText(intent.getStringExtra("memo"))
         editTextUrl.setText(intent.getStringExtra("url"))
-
-        var nakami = 0
-
-        if (editTextShopName.text.toString() == "" ){
-             nakami = 1
-        }else {
-             nakami = 2
-        }
-
 
         //登録ボタンが押された時に
         addButton.setOnClickListener {
@@ -39,24 +33,29 @@ class ShopFormActivity : AppCompatActivity() {
 //            intent.putExtra("shopaddress", editTextPostalAddress.text.toString())
 //            intent.putExtra("memo", editTextMemo.text.toString())
 //            intent.putExtra("url", editTextUrl.text.toString())
-//
 
             //データベースへ登録
             val id:String? = intent.getStringExtra("ID")
             val name: String  = editTextShopName.text.toString()
             val add: String  = editTextPostalAddress.text.toString()
-            val memo: String = diaryMemo.text.toString()
+            val memo: String = editTextMemo.text.toString()
             val url: String = editTextUrl.text.toString()
             val imageId:Int =  R.drawable.uranai0
 
-            if (nakami == 1){
+            if (intentMode == 0 || intentMode == 1){
                 create(imageId ,name,add,memo,url )
-            } else if (nakami == 2){
+            } else if (intentMode == 2){
                 update(id,imageId ,name,add,memo,url)
             }
 
             // 画面を閉じる
             finish()
+
+            // 他アプリから呼び出された場合
+            if (intentMode == 0) {
+                //Fragment2に切替え
+                replaceFragment(Fragment2())
+            }
         }
 
         //Google Map表示
@@ -97,5 +96,13 @@ class ShopFormActivity : AppCompatActivity() {
             shopcard.memo = memo
             shopcard.url = url
         }
+    }
+
+    //R.id.containerに引数で渡されたフラグメントを入れる。
+    fun replaceFragment(fragment: Fragment) {
+        val fragmentManager = supportFragmentManager
+        val fragmentTransaction = fragmentManager.beginTransaction()
+        fragmentTransaction.replace(R.id.container, fragment)
+        fragmentTransaction.commit()
     }
 }

@@ -15,10 +15,12 @@ class RealmKakigooriApplication: Application() {
         //Realmの初期化処理
         Realm.init(this)
 
+        //開発効率化
+        // データベースに保存するモデルに変更を加えたとき、
+        // アプリを削除して再インストールする手間を省くことができる
         val realmConfig = RealmConfiguration.Builder()
             .deleteRealmIfMigrationNeeded()
             .build()
         Realm.setDefaultConfiguration(realmConfig)
-
     }
 }

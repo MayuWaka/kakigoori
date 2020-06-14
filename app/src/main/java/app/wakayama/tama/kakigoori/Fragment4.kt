@@ -1,6 +1,8 @@
 package app.wakayama.tama.kakigoori
 
 import android.graphics.Color
+import android.media.AudioAttributes
+import android.media.SoundPool
 import android.os.Bundle
 import android.os.CountDownTimer
 import android.util.Log
@@ -9,11 +11,11 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageButton
 import androidx.fragment.app.Fragment
+import kotlinx.android.synthetic.main.fragment_1.*
 import kotlinx.android.synthetic.main.fragment_2.*
 import kotlinx.android.synthetic.main.fragment_3.*
 import kotlinx.android.synthetic.main.fragment_4.*
 import kotlin.random.Random
-
 
 class Fragment4 : Fragment() {
 
@@ -29,79 +31,108 @@ class Fragment4 : Fragment() {
                          R.drawable.uranai9)
     var index: Int = 0
 
+    private  lateinit var mSoundPool: SoundPool
+    private  lateinit var mSoundID: Array<Int?>
+    private  val mSoundResource =  arrayOf(
+        R.raw.drumroll,
+        R.raw.triangle
+    )
+
     val cdTimer : CountDownTimer =
-        object : CountDownTimer(3500, 100) {
+        object : CountDownTimer(3300, 100) {
             override fun onFinish() {
                 textView6.text = ""
                 sec = 3.5f
                 textView6.setTextColor(Color.WHITE)
 
-                //占い表示
+                //占い結果表示
                 var num = Random.nextInt(8)
 //                val  ImageButton = view.findViewById<ImageButton>(R.id.imageButton)
-
                 val  ImageButton = imageButton
                 when (num) {
                     0 -> { syuruiTextView.text = "フランボワーズ氷"
                         kekkaTextView.text = "甘酸っぱい恋の予感！？"
+//                        fragment1.setBackgroundResource(R.color.koori1)
 //                        fragment2.setBackgroundResource(R.color.koori1)
 //                        fragment3.setBackgroundResource(R.color.koori1)
-                        fragment4.setBackgroundResource(R.color.koori1)
+//                        fragment4.setBackgroundResource(R.color.koori1)
+                        constraintRayout.setBackgroundResource(R.color.koori1)
                         ImageButton.setImageResource(R.drawable.uranai1)}
-
 
                     1 -> { syuruiTextView.text = "マスカット氷"
                         kekkaTextView.text = "今日は平和な一日になりそう！"
+//                        fragment1.setBackgroundResource(R.color.koori2)
 //                        fragment2.setBackgroundResource(R.color.koori2)
 //                        fragment3.setBackgroundResource(R.color.koori2)
-                        fragment4.setBackgroundResource(R.color.koori2)
+//                        fragment4.setBackgroundResource(R.color.koori2)
+                        constraintRayout.setBackgroundResource(R.color.koori2)
                         ImageButton.setImageResource(R.drawable.uranai2)}
 
                     2 ->{   syuruiTextView.text = "チョコミント氷"
                         kekkaTextView.text = "お仕事、勉強がはかどる一日になりそう！"
-//                    background="#00CED1"
-                        fragment4.setBackgroundResource(R.color.koori3)
+//                        fragment1.setBackgroundResource(R.color.koori3)
+//                        fragment2.setBackgroundResource(R.color.koori3)
+//                        fragment3.setBackgroundResource(R.color.koori3)
+//                        fragment4.setBackgroundResource(R.color.koori3)
+                        constraintRayout.setBackgroundResource(R.color.koori3)
                         ImageButton.setImageResource(R.drawable.uranai3)}
 
                     3 -> {  syuruiTextView.text = "ブルーベリー氷"
                         kekkaTextView.text = "疲れがたまってきているかも。リフレッシュしよう！"
-//                    background="#C692F5"
-                        fragment4.setBackgroundResource(R.color.koori4)
+//                        fragment1.setBackgroundResource(R.color.koori4)
+//                        fragment2.setBackgroundResource(R.color.koori4)
+//                        fragment3.setBackgroundResource(R.color.koori4)
+//                        fragment4.setBackgroundResource(R.color.koori4)
+                        constraintRayout.setBackgroundResource(R.color.koori4)
                         ImageButton.setImageResource(R.drawable.uranai4)}
 
                     4 -> {  syuruiTextView.text = "酒粕氷"
                         kekkaTextView.text = "気分転換をすると良いことあるかも！！"
-//                    background="#FFFFFF"
-                        fragment4.setBackgroundResource(R.color.koori5)
+//                        fragment1.setBackgroundResource(R.color.koori5)
+//                        fragment2.setBackgroundResource(R.color.koori5)
+//                        fragment3.setBackgroundResource(R.color.koori5)
+//                        fragment4.setBackgroundResource(R.color.koori5)
+                        constraintRayout.setBackgroundResource(R.color.koori5)
                         ImageButton.setImageResource(R.drawable.uranai5)}
 
                     5 -> {  syuruiTextView.text = "マロン氷"
                         kekkaTextView.text = "友達とより仲良くなることが起こるかも！？"
-//                    background="#FAF0E9"
-                        fragment4.setBackgroundResource(R.color.koori6)
+//                        fragment1.setBackgroundResource(R.color.koori6)
+//                        fragment2.setBackgroundResource(R.color.koori6)
+//                        fragment3.setBackgroundResource(R.color.koori6)
+//                        fragment4.setBackgroundResource(R.color.koori6)
+                        constraintRayout.setBackgroundResource(R.color.koori6)
                         ImageButton.setImageResource(R.drawable.uranai6)}
 
                     6 ->{   syuruiTextView.text = "オレンジ氷"
                         kekkaTextView.text = "今日は新しい友達が出来るかも！？"
-//                    background="#FFBD4C"
-                        fragment4.setBackgroundResource(R.color.koori7)
+//                        fragment1.setBackgroundResource(R.color.koori7)
+//                        fragment2.setBackgroundResource(R.color.koori7)
+//                        fragment3.setBackgroundResource(R.color.koori7)
+//                        fragment4.setBackgroundResource(R.color.koori7)
+                        constraintRayout.setBackgroundResource(R.color.koori7)
                         ImageButton.setImageResource(R.drawable.uranai7)}
 
                     7 -> {  syuruiTextView.text = "チョコ氷"
                         kekkaTextView.text = "今日は全てがうまくいく予感！"
-//                    background="#4F2E24"
-                        fragment4.setBackgroundResource(R.color.koori8)
+//                        fragment1.setBackgroundResource(R.color.koori8)
+//                        fragment2.setBackgroundResource(R.color.koori8)
+//                        fragment3.setBackgroundResource(R.color.koori8)
+//                        fragment4.setBackgroundResource(R.color.koori8)
+                        constraintRayout.setBackgroundResource(R.color.koori8)
                         ImageButton.setImageResource(R.drawable.uranai8)}
 
                     8 -> {  syuruiTextView.text = "ゴールデンピーチ氷"
                         kekkaTextView.text = "今日は金運アップ！！"
-//                    background="#FCEA6B"
-                        fragment4.setBackgroundResource(R.color.koori9)
+//                        fragment1.setBackgroundResource(R.color.koori9)
+//                        fragment2.setBackgroundResource(R.color.koori9)
+//                        fragment3.setBackgroundResource(R.color.koori9)
+//                        fragment4.setBackgroundResource(R.color.koori9)
+                        constraintRayout.setBackgroundResource(R.color.koori9)
                         ImageButton.setImageResource(R.drawable.uranai9)}
-
                 }
-
             }
+
             override  fun onTick(millisUntilFinished: Long) {
                 sec = sec - 0.1f
 //                textView6.text = sec.toString()
@@ -130,6 +161,21 @@ class Fragment4 : Fragment() {
 
         val layout = inflater.inflate(R.layout.fragment_4, container, false)
 
+        val audioAttributes = AudioAttributes.Builder()
+            .setUsage(AudioAttributes.USAGE_MEDIA)
+            .setContentType(AudioAttributes.CONTENT_TYPE_MUSIC)
+            .build()
+
+        mSoundPool = SoundPool.Builder()
+            .setAudioAttributes(audioAttributes)
+            .setMaxStreams(mSoundResource.size)
+            .build()
+
+        mSoundID = arrayOfNulls(mSoundResource.size)
+        for (i in 0..(mSoundResource.size - 1)){
+            mSoundID[i] = mSoundPool.load(requireContext(),mSoundResource[i],0)
+        }
+
         return layout
     }
 
@@ -137,10 +183,14 @@ class Fragment4 : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         textView6.setOnClickListener {
+            mSoundPool.play(mSoundID[0] as Int,1.0F,1.0F,0,0,1.0F)
             cdTimer.start()
         }
+    }
 
-        //
+    override fun onDestroy() {
+        super.onDestroy()
 
+        mSoundPool.release()
     }
 }

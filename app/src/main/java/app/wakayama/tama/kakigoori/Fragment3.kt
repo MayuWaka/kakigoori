@@ -1,25 +1,18 @@
 package app.wakayama.tama.kakigoori
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
-import android.widget.Button
-import android.widget.Toast
-import android.graphics.BitmapFactory
-import android.widget.ImageView
-import androidx.core.app.ActivityCompat.startActivityForResult
 import androidx.recyclerview.widget.LinearLayoutManager
 import io.realm.Realm
 import io.realm.RealmResults
 import io.realm.Sort
-import kotlinx.android.synthetic.main.activity_diary.*
-import kotlinx.android.synthetic.main.activity_diary_form.*
 import kotlinx.android.synthetic.main.fragment_3.*
 import java.util.*
+
 
 class Fragment3 : Fragment() {
 
@@ -29,6 +22,7 @@ class Fragment3 : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         super.onCreateView(inflater, container, savedInstanceState)
+
         val layout = inflater.inflate(R.layout.fragment_3, container, false)
 
         return layout
@@ -51,9 +45,6 @@ class Fragment3 : Fragment() {
 
             //お店の情報の登録画面を呼び出す
             startActivity(diaryform)
-
-//            recyclerView.setHasFixedSize(true)
-//            recyclerView.layoutManager = LinearLayoutManager(requireContext())
         }
 
         var adapterDiary =

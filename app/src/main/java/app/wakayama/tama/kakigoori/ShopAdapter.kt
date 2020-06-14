@@ -6,6 +6,7 @@ import android.widget.LinearLayout
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.AdapterView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import io.realm.OrderedRealmCollection
@@ -17,6 +18,7 @@ class ShopAdapter(
     private val context: Context,
     private var shopList: OrderedRealmCollection<Shop>?,
     private var listener: OnItemClickListener,
+//    private var listener2: OnItemLongClickListener,
     private val autoUpdate: Boolean
 ) :
     RealmRecyclerViewAdapter<Shop, ShopAdapter.ShopMemoViewHolder>(shopList, autoUpdate) {
@@ -29,6 +31,9 @@ class ShopAdapter(
         holder.container.setOnClickListener{
             listener.onItemClick(shop)
         }
+//        holder.container.setOnLongClickListener{
+//            listener2.onItemLongClick(shop)
+//        }
         holder.imageView.setImageResource(shop.imageId)
         holder.shopNameTextView.text = shop.shopname
 //        holder.dateTextView.text =
@@ -52,4 +57,7 @@ class ShopAdapter(
         fun onItemClick(item: Shop)
     }
 
+//    interface OnItemLongClickListener {
+//        fun onItemLongClick(item: Shop)
+//    }
 }
