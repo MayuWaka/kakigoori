@@ -9,8 +9,9 @@
     card_view:cardCornerRadius="12dp">
 
     <LinearLayout
+        android:id="@+id/container"
         android:layout_width="match_parent"
-        android:layout_height="531dp"
+        android:layout_height="393dp"
         android:layout_margin="16dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
@@ -19,30 +20,24 @@
 
         <TextView
             android:id="@+id/shopNameTextView"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_weight="1"
-            android:gravity="center_vertical"
+            android:layout_weight="0"
+            android:gravity="center|center_vertical"
             android:text="店名"
             android:textSize="18sp" />
 
         <ImageView
             android:id="@+id/imageView"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="192dp"
             android:layout_gravity="center"
             android:layout_margin="8dp"
+            android:layout_weight="0"
             card_view:srcCompat="@drawable/uranai0" />
 
-        <RatingBar
-            android:id="@+id/ratingBar2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_weight="0" />
-
-        <EditText
+        <TextView
             android:id="@+id/editTextMemo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -50,17 +45,24 @@
             android:layout_margin="16dp"
             android:layout_weight="0"
             android:ems="10"
-            android:gravity="start|top"
-            android:inputType="textMultiLine" />
+            android:gravity="center|top" />
 
-        <EditText
+        <RatingBar
+            android:id="@+id/ratingBar2"
+            android:layout_width="wrap_content"
+            android:layout_height="43dp"
+            android:layout_gravity="center"
+            android:layout_weight="0"
+            android:isIndicator="true"
+            android:stepSize="0.5" />
+
+        <TextView
             android:id="@+id/editTextDate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_weight="0"
-            android:ems="10"
-            android:inputType="date" />
+            android:ems="10" />
     </LinearLayout>
 
     <!--    <TextView-->

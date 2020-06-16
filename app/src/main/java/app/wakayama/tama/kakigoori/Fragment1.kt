@@ -67,8 +67,8 @@ class Fragment1 : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         var angleInDegrees: Float = 25.0F
-        koriImageView.setRotation(angleInDegrees);
-        angleInDegrees = -25.0F
+//        koriImageView.setRotation(angleInDegrees);
+//        angleInDegrees = -25.0F
         koriImageView2.setRotation(angleInDegrees);
 
         searchButton.setOnClickListener{

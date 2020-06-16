@@ -1,12 +1,12 @@
 package app.wakayama.tama.kakigoori
+
 import android.content.Intent
 import android.graphics.BitmapFactory
 import android.net.Uri
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import io.realm.Realm
-import kotlinx.android.synthetic.main.activity_diary.*
 import kotlinx.android.synthetic.main.activity_diary_form.*
 import java.util.*
 
@@ -17,6 +17,7 @@ class DiaryFormActivity : AppCompatActivity() {
         Realm.getDefaultInstance()
     }
 
+    private var imageUri: Uri = Uri.parse("")
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -25,28 +26,30 @@ class DiaryFormActivity : AppCompatActivity() {
         val intentMode: Int = intent.getStringExtra("Mode").toInt()
 
         editTextShopName.setText(intent.getStringExtra("shopname"))
-        imageView2.setImageURI(Uri.parse(intent.getStringExtra("imageUri")))
+        imageUri = Uri.parse(intent.getStringExtra("imageUri"))
+        imageView2.setImageURI(imageUri)
         diaryMemoEdit.setText(intent.getStringExtra("memo"))
         ratingBar.setRating(intent.getFloatExtra("star", 0.0F))
+//        editTextDate.setText(intent.getStringExtra("date"))
 
         // 写真選択
         imageView2.setOnClickListener {
             selectPhoto()
         }
 
-        //登録ボタンが押された時に
+        // 登録ボタンが押された時に
         addButton.setOnClickListener {
             //データベースへ登録
             val id: String? = intent.getStringExtra("ID")
             val shopName: String = editTextShopName.text.toString()
+            val imageUri: String = imageUri.toString()
             val memo: String = diaryMemoEdit.text.toString()
-            val imageUri: String = imageView2.id.toString()
             val star: Float = ratingBar.rating.toFloat()
 
             if (intentMode == 1) {
                 create(shopName, imageUri, memo, star)
             } else if (intentMode == 2) {
-                update( id, shopName, imageUri, memo, star)
+                update(id, shopName, imageUri, memo, star)
             }
 
             // 画面を閉じる
@@ -84,7 +87,6 @@ class DiaryFormActivity : AppCompatActivity() {
         realm.executeTransaction {
             val diarycard = realm.where(Diary::class.java).equalTo("id", id).findFirst()
                 ?: return@executeTransaction
-            diarycard.id= id
             diarycard.shopname = shopName
             diarycard.imageUri = imageUri
             diarycard.memo = memo
@@ -101,6 +103,7 @@ class DiaryFormActivity : AppCompatActivity() {
             READ_REQUEST_CODE -> {
                 try {
                     data?.data?.also { uri ->
+                        imageUri = uri
                         val inputStream = contentResolver.openInputStream(uri)
                         val image = BitmapFactory.decodeStream(inputStream)
                         val imageView = imageView2
@@ -123,5 +126,4 @@ class DiaryFormActivity : AppCompatActivity() {
         }
         startActivityForResult(intent, DiaryFormActivity.READ_REQUEST_CODE)
     }
-
 }

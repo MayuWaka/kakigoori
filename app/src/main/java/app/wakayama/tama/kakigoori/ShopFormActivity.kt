@@ -50,12 +50,12 @@ class ShopFormActivity : AppCompatActivity() {
 
             // 画面を閉じる
             finish()
-
-            // 他アプリから呼び出された場合
-            if (intentMode == 0) {
-                //Fragment2に切替え
-                replaceFragment(Fragment2())
-            }
+//
+//            // 他アプリから呼び出された場合
+//            if (intentMode == 0) {
+//                //Fragment2に切替え
+//                replaceFragment(Fragment2())
+//            }
         }
 
         //Google Map表示
