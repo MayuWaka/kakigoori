@@ -38,9 +38,9 @@ class Fragment2 : Fragment() {
 
         val shopList = readAll()
 
-        if (shopList.isEmpty()) {
-            createDummyData()
-        }
+//        if (shopList.isEmpty()) {
+//            createDummyData()
+//        }
 
         //FloatingActionButtonの動作実装
         val fab: View = view.findViewById(R.id.fab)

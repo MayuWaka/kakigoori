@@ -66,7 +66,7 @@ class ShopFormActivity : AppCompatActivity() {
 //            val mapUrl:String = "http://plus.codes/" + editTextPostalAddress.text +"?q=20"
             val mapUrl:String = editTextUrl.text.toString()
             val mapIntent = Intent(Intent.ACTION_VIEW, Uri.parse(mapUrl))
-            mapIntent.setPackage("com.google.android.apps.maps");
+//            mapIntent.setPackage("com.google.android.apps.maps");
             startActivity(mapIntent)
         }
     }
