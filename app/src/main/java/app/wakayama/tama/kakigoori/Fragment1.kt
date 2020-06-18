@@ -82,7 +82,7 @@ class Fragment1 : Fragment() {
 
         val searchList = readAll()
 
-       if (searchList.isNotEmpty()) {
+        if (searchList.isNotEmpty()) {
             var searchArr: Array<Search>?
             searchArr = searchList.toTypedArray()
             searchAreaTextView.setText(searchArr[0].searchArea)
@@ -110,7 +110,7 @@ class Fragment1 : Fragment() {
                     "OK"
                 ) { dialog, which ->
                     //削除実行
-                    deleteAll()
+                    deleteSearchData()
                     searchAreaTextView.setText("")
                     Toast.makeText(requireContext(), "検索履歴を削除しました", Toast.LENGTH_SHORT)
                         .show()
@@ -136,9 +136,11 @@ class Fragment1 : Fragment() {
         return realm.where(Search::class.java).findAll().sort("id", Sort.DESCENDING)
     }
 
-    fun deleteAll() {
+    fun deleteSearchData() {    // Searchクラスのデータのみ削除
         realm.executeTransaction {
-            realm.deleteAll()
+            val searchList: RealmResults<Search> = realm.where(Search::class.java)
+                .findAll()
+            searchList.deleteAllFromRealm()
         }
     }
 }

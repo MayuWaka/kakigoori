@@ -192,9 +192,9 @@ class Fragment2 : Fragment() {
         }
     }
 
-    fun deleteAll() {
-        realm.executeTransaction {
-            realm.deleteAll()
-        }
-    }
+//    fun deleteAll() {    //全クラスのデータ削除になるので使用は注意
+//        realm.executeTransaction {
+//            realm.deleteAll()
+//        }
+//    }
 }
