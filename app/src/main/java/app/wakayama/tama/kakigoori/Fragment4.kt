@@ -43,7 +43,7 @@ class Fragment4 : Fragment() {
                 textView6.setTextColor(Color.WHITE)
 
                 //占い結果表示
-                var num = Random.nextInt(8)
+                var num = Random.nextInt(9)
 //                val  ImageButton = view.findViewById<ImageButton>(R.id.imageButton)
                 val  ImageButton = imageButton
                 when (num) {
